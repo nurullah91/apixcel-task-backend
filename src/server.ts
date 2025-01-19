@@ -1,4 +1,3 @@
-import "./app/utils/userPlanValidityChecker";
 import app from "./app";
 import config from "./app/config";
 import mongoose from "mongoose";

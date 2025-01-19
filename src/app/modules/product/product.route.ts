@@ -3,7 +3,6 @@ import { multerUpload } from "../../config/multer.config";
 import validateRequest from "../../middlewares/validateRequest";
 import checkAuth from "../../middlewares/checkAuth";
 import { USER_ROLE } from "../user/user.constant";
-import { parseBody } from "../../middlewares/parseBody";
 import { productSchema } from "./product.validation";
 import { ProductController } from "./product.controller";
 
@@ -12,10 +11,15 @@ const router = express.Router();
 router.post(
   "/create-product",
   checkAuth(USER_ROLE.user, USER_ROLE.admin),
-  multerUpload.array("image"),
-  parseBody,
-  validateRequest(productSchema.updateProductSchema),
+  validateRequest(productSchema.createProductSchema),
   ProductController.createProduct
+);
+
+router.post(
+  "/upload-image",
+  checkAuth(USER_ROLE.user, USER_ROLE.admin),
+  multerUpload.single("image"),
+  ProductController.uploadImage
 );
 
 router.get("/", ProductController.getAllProducts);
@@ -31,8 +35,6 @@ router.delete(
 router.patch(
   "/update-product/:productId",
   checkAuth(USER_ROLE.user, USER_ROLE.admin),
-  multerUpload.array("image"),
-  parseBody,
   ProductController.updateProduct
 );
 

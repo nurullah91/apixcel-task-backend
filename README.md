@@ -8,7 +8,9 @@ clone the repository and add required env variables find in .env.example and run
 
 ```
 npm install
-npm run start:dev
+npm run dev
 ```
 
 then it will run on the localhost 5000 port.
+
+## Deployed Live link: https://apixcel-backend.vercel.app

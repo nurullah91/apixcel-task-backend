@@ -1,23 +1,28 @@
 import handleAsync from "../../utils/handleAsync";
 import responseSender from "../../utils/responseSender";
 import httpStatus from "http-status";
-import { Express } from "express";
 import { ProductServices } from "./product.service";
 
 const createProduct = handleAsync(async (req, res) => {
-  const images = req.files as Express.Multer.File[];
-
-  const ProductData = req.body;
-  if (images?.length) {
-    ProductData.ProductPhotos = images.map((image) => image.path);
-  }
-  const result = await ProductServices.createProductIntoDB(ProductData);
+  const productData = req.body;
+  const result = await ProductServices.createProductIntoDB(productData);
 
   responseSender(res, {
     success: true,
     statusCode: httpStatus.OK,
     message: "Product created successful",
     data: result,
+  });
+});
+
+const uploadImage = handleAsync(async (req, res) => {
+  const imageUrl = { coverPhoto: req.file?.path };
+
+  responseSender(res, {
+    success: true,
+    statusCode: httpStatus.OK,
+    message: "Image uploaded successful",
+    data: { imageUrl },
   });
 });
 
@@ -46,14 +51,8 @@ const getSingleProduct = handleAsync(async (req, res) => {
 
 const updateProduct = handleAsync(async (req, res) => {
   const { productId } = req.params;
-  const images = req.files as Express.Multer.File[];
 
   const ProductData = req.body;
-
-  if (images?.length) {
-    ProductData.ProductPhotos = images.map((image) => image.path);
-  }
-
   const result = await ProductServices.updateProductInDB(
     productId as string,
     ProductData
@@ -80,6 +79,7 @@ const deleteSingleProduct = handleAsync(async (req, res) => {
 
 export const ProductController = {
   createProduct,
+  uploadImage,
   updateProduct,
   deleteSingleProduct,
   getSingleProduct,
