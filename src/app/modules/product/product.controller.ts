@@ -37,6 +37,18 @@ const getAllProducts = handleAsync(async (req, res) => {
   });
 });
 
+const getAllCategories = handleAsync(async (req, res) => {
+  const result = await ProductServices.getAllCategoriesFromDB();
+
+  responseSender(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "All Products are retrieved successfully",
+
+    data: result,
+  });
+});
+
 const getSingleProduct = handleAsync(async (req, res) => {
   const { productId } = req.params;
   const result = await ProductServices.getSingleProductFromDB(productId);
@@ -84,4 +96,5 @@ export const ProductController = {
   deleteSingleProduct,
   getSingleProduct,
   getAllProducts,
+  getAllCategories,
 };

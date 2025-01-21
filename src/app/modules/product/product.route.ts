@@ -25,6 +25,7 @@ router.post(
 router.get("/", ProductController.getAllProducts);
 
 router.get("/:productId", ProductController.getSingleProduct);
+router.get("/categories/all-categories", ProductController.getAllCategories);
 
 router.delete(
   "/:productId",
