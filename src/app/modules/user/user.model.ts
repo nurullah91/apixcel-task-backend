@@ -24,7 +24,7 @@ const userSchema: Schema = new Schema<TUser>(
 
     isDeleted: { type: Boolean, default: false },
     status: { type: String, enum: ["active", "blocked"], default: "active" },
-    passwordChangedAt: { type: Date },
+    passwordChangedAt: { type: Date, default: new Date() },
   },
   {
     timestamps: true,

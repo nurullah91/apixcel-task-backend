@@ -5,11 +5,7 @@ const createUserSchema = z.object({
   password: z.string().min(6, "At least 6 password is required"),
   name: z.string().min(1, "First name is required"),
   email: z.string().email("Invalid email address"),
-  role: z
-    .enum(["admin", "user"], {
-      message: "Role must be either admin or user",
-    })
-    .optional(),
+
   phone: z
     .string()
     .max(15, "Phone number cannot be more thant 15 characters long"),

@@ -265,7 +265,7 @@ const forgetPassword = async (email: string) => {
       <a href="${resetPasswordLink}" style="display: inline-block; padding: 12px 24px; font-size: 16px; font-weight: bold; color: #ffffff !important; background-color: #2967a7; text-decoration: none; border-radius: 8px; transition: background-color 0.3s ease;">Reset Password</a>
       <p style="font-size: 16px; margin-bottom: 20px; color: #555;"> If you didn't request a password reset, please ignore this email. </p>
       <div style="margin-top: 40px; font-size: 14px; color: #aaa;"> &copy; 2024 <span style="cursor: pointer; text-decoration: underline; color: #1a2235 !important;">
-      <a href="https://gardenbook-client.vercel.app/" style="text-decoration: none; color: inherit;">APIXcel</a> 
+      <a href="https://apixcel-frontend-five.vercel.app/" style="text-decoration: none; color: inherit;">APIXcel</a> 
       </span> . All rights reserved. </div>
        </div> 
        </div>
